@@ -426,8 +426,8 @@ main { display: flex; flex-direction: column; }.hero { order: 1; }.profile { ord
 
 /* Swap the title and notation clusters: notation on the left, headline in the middle. */
 .hero-title-side { min-height: 470px; width: 100%; }
-.hero-primary-message { left: clamp(520px, 42vw, 810px); position: absolute; top: 0; }
-.hero-title-side .hero-system { border: 0; left: clamp(660px, 55vw, 1080px); top: 37%; }
+.hero-primary-message { left: auto; position: static; top: auto; }
+.hero-title-side .hero-system { border: 0; left: clamp(720px, 60vw, 1180px); top: 37%; }
 .hero-title-side .hero-system::before, .hero-title-side .hero-system::after { content: none !important; }
 @media (max-width: 1060px) {
   .hero-title-side { min-height: 0; }
