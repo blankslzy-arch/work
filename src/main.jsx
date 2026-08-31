@@ -404,7 +404,7 @@ function App() {
                 </div>
                 <div>
                   <span>WORKFLOW</span>
-                  <strong>C4D / AE / PR / AI</strong>
+                  <strong>C4D / AE / PR / AICG</strong>
                 </div>
                 <div>
                   <span>DELIVERY</span>
