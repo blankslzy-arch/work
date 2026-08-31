@@ -369,7 +369,7 @@ function App() {
                 </div>
                 <div className="hero-system" aria-hidden="true">
                   <span className="system-code">MOTION / 3D / VISUAL</span>
-                  <strong>LZY</strong>
+                  <strong>李子昱</strong>
                   <span className="system-rule" />
                   <span className="system-caption">IDEA INTO<br />MOTION</span>
                 </div>
