@@ -397,3 +397,8 @@ main { display: flex; flex-direction: column; }.hero { order: 1; }.profile { ord
   .profile-statement p { font-size: 35px; }
   .strengths-grid { grid-template-columns: 1fr; }
 }
+
+/* The hero's experience card now lives in the profile section, leaving a cleaner opening frame. */
+.hero-editorial { grid-template-columns: minmax(460px, 1.32fr) minmax(250px, .68fr); max-width: 1260px; }
+@media (max-width: 840px) { .hero-editorial { grid-template-columns: minmax(0, 1fr) minmax(185px, .45fr); } }
+@media (max-width: 540px) { .hero-editorial { display: block; } .hero-system { display: none; } }

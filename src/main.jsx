@@ -203,7 +203,6 @@ function App() {
         }, 0.63)
         .from('.hero-index', { duration: 0.9, x: -54, autoAlpha: 0 }, 0.84)
         .from('.hero-actions > *', { duration: 0.9, y: 26, autoAlpha: 0, stagger: 0.1 }, 1.12)
-        .from('.hero-advantage', { duration: 1.25, x: 90, clipPath: 'inset(0 0 100% 0)', ease: 'expo.out' }, 0.88)
         .from('.hero-meta', { duration: 0.9, y: 18, autoAlpha: 0 }, 1.4)
 
       gsap.utils.toArray('.motion-section').forEach((section) => {
@@ -317,16 +316,6 @@ function App() {
                 <span className="system-rule" />
                 <span className="system-caption">IDEA INTO<br />MOTION</span>
               </div>
-              <aside className="hero-advantage">
-                <span className="advantage-label">PROFILE / 2026</span>
-                <h2><b>7</b> 年<br />动态设计经验</h2>
-                <p>以三维、镜头与节奏，为品牌和产品建立有辨识度的动态视觉。</p>
-                <div className="advantage-list">
-                  <span>三维设计 / CGI / C4D</span>
-                  <span>动态设计 / 后期合成</span>
-                  <span>产品动画 / 裸眼 3D</span>
-                </div>
-              </aside>
             </div>
           </div>
 
