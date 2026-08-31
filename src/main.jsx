@@ -2,7 +2,6 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import GradientWaves from './components/GradientWaves'
 import './styles.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -307,32 +306,10 @@ function App() {
     <main ref={appRef}>
       <section className="hero" id="top">
         <div className="hero-media" aria-hidden="true">
-          <GradientWaves
-            className="hero-waves"
-            horizonColor="#1c303b"
-            waveColor="#527282"
-            crestColor="#d7e4e4"
-            speed={0.22}
-            amplitude={1.1}
-            waveScale={0.5}
-            waveRatio={0.84}
-            swell={16}
-            turbulence={9}
-            tilt={1.08}
-            zoom={1.17}
-            height={4.6}
-            fogDepth={17}
-            detail="low"
-            brightness={0.68}
-            opacity={0.58}
-            grain
-            grainIntensity={0.02}
-          />
           <div className="hero-fallback" />
           <div className="hero-noise" />
         </div>
         <div className="hero-opening-curtain" aria-hidden="true" />
-        <span className="hero-rail" aria-hidden="true">LZY / 个人作品集 / 2026</span>
 
         <div className="hero-shell shell">
           <nav className="nav" aria-label="主导航">
@@ -361,8 +338,8 @@ function App() {
 
           <div className="hero-content">
             <div className="hero-content-head">
-              <p className="hero-kicker">李子昱 / 三维动画设计师</p>
-              <span className="hero-status"><i /> 正在接受精选项目合作</span>
+              <p className="hero-kicker">LZY / 3D MOTION DESIGNER</p>
+              <span className="hero-status"><i /> AVAILABLE FOR SELECTED PROJECTS</span>
             </div>
             <div className="hero-editorial">
               <div className="hero-title-side">
@@ -377,10 +354,16 @@ function App() {
                   <a href="#profile" className="hero-button hero-button-secondary">了解我的经历</a>
                 </div>
               </div>
+              <div className="hero-system" aria-hidden="true">
+                <span className="system-code">MOTION / 3D / VISUAL</span>
+                <strong>LZY</strong>
+                <span className="system-rule" />
+                <span className="system-caption">IDEA INTO<br />MOTION</span>
+              </div>
               <aside className="hero-advantage">
-                <span className="advantage-label">设计师优势 / 01</span>
+                <span className="advantage-label">PROFILE / 2026</span>
                 <h2><b>7</b> 年<br />动态设计经验</h2>
-                <p>从创意、分镜到三维制作与后期合成，持续为品牌和产品构建有节奏、有质感的视觉体验。</p>
+                <p>以三维、镜头与节奏，为品牌和产品建立有辨识度的动态视觉。</p>
                 <div className="advantage-list">
                   <span>三维设计 / CGI / C4D</span>
                   <span>动态设计 / 后期合成</span>
@@ -391,9 +374,9 @@ function App() {
           </div>
 
           <div className="hero-meta" aria-hidden="true">
-            <span>向下探索</span>
-            <span>深圳 / 中国</span>
-            <span className="scroll-cue"><i /> 向下探索</span>
+            <span>SCROLL TO EXPLORE</span>
+            <span>SHENZHEN / CHINA</span>
+            <span className="scroll-cue"><i /> 2026 PORTFOLIO</span>
           </div>
         </div>
       </section>
