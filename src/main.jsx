@@ -299,21 +299,23 @@ function App() {
             </div>
             <div className="hero-editorial">
               <div className="hero-title-side">
-                <p className="hero-index">01 / 个人作品集</p>
-                <h1 className="hero-headline">
-                  <span className="headline-idea"><i>让想法</i></span>
-                  <span className="headline-real"><i>真正</i></span>
-                  <em><i>动起来。</i></em>
-                </h1>
+                <div className="hero-primary-message">
+                  <p className="hero-index">01 / 个人作品集</p>
+                  <h1 className="hero-headline">
+                    <span className="headline-idea"><i>让想法</i></span>
+                    <span className="headline-real"><i>真正</i></span>
+                    <em><i>动起来。</i></em>
+                  </h1>
+                  <div className="hero-actions">
+                    <a href="#work" className="hero-button hero-button-primary">查看精选作品 <ArrowUpRight /></a>
+                    <a href="#profile" className="hero-button hero-button-secondary">了解我的优势</a>
+                  </div>
+                </div>
                 <div className="hero-system" aria-hidden="true">
                   <span className="system-code">MOTION / 3D / VISUAL</span>
                   <strong>LZY</strong>
                   <span className="system-rule" />
                   <span className="system-caption">IDEA INTO<br />MOTION</span>
-                </div>
-                <div className="hero-actions">
-                  <a href="#work" className="hero-button hero-button-primary">查看精选作品 <ArrowUpRight /></a>
-                  <a href="#profile" className="hero-button hero-button-secondary">了解我的优势</a>
                 </div>
               </div>
             </div>
