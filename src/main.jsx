@@ -255,9 +255,8 @@ function App() {
   }, [])
 
   const menuItems = [
-    ['关于我', '#about'],
-    ['作品', '#work'],
     ['优势', '#profile'],
+    ['作品', '#work'],
   ]
 
   return (
@@ -339,28 +338,10 @@ function App() {
         </div>
       </section>
 
-      <section className="intro section shell motion-section" id="about">
-        <div className="section-heading">
-          <p className="section-index">( 01 )</p>
-          <p className="section-label">ABOUT / PROFILE</p>
-        </div>
-        <p className="motion-word" aria-hidden="true">ABOUT</p>
-        <div className="intro-grid">
-          <div className="intro-title-wrap">
-            <h2>让画面<br /><em>拥有</em>动势。</h2>
-            <p className="intro-statement">不止完成一段动画，更为品牌找到一种能够被看见、被记住的动态表达。</p>
-          </div>
-          <div className="intro-aside">
-            <span className="intro-mark">LZY<br />—<br />26</span>
-            <p>我相信科技感不一定来自复杂。准确的比例、克制的光与有呼吸感的运动，才是画面真正的力量。</p>
-          </div>
-        </div>
-      </section>
-
       <section className="profile section motion-section" id="profile">
         <div className="shell">
           <div className="section-heading">
-            <p className="section-index">( 02 )</p>
+            <p className="section-index">( 01 )</p>
             <p className="section-label">EXPERIENCE / PROFILE</p>
           </div>
           <p className="motion-word" aria-hidden="true">EXPERIENCE</p>
@@ -386,9 +367,9 @@ function App() {
               <a href="#contact" className="text-link">发起合作 <ArrowUpRight /></a>
             </div>
             <aside className="profile-statement">
-              <span>01 / DESIGN VALUE</span>
-              <p>不只完成画面，<br />也建立作品的<br /><em>视觉节奏。</em></p>
-              <small>IDEA / CAMERA / MOTION</small>
+              <span>01 / DESIGN APPROACH</span>
+              <p>让画面<br /><em>拥有动势。</em></p>
+              <small>不止完成一段动画，更为品牌找到一种能够被看见、被记住的动态表达。</small>
             </aside>
           </div>
         </div>
@@ -398,10 +379,9 @@ function App() {
         <div className="shell">
           <div className="work-heading">
             <div className="section-heading">
-              <p className="section-index">( 03 )</p>
+              <p className="section-index">( 02 )</p>
               <p className="section-label">SELECTED WORK</p>
             </div>
-            <p>基于真实项目类型构建的作品展示结构。<br />后续可直接替换为对应项目封面与详情页。</p>
           </div>
           <p className="motion-word" aria-hidden="true">SELECTED<br />WORK</p>
 
@@ -439,7 +419,7 @@ function App() {
         <div className="shell">
           <div className="strengths-top">
             <div className="section-heading section-heading-dark">
-              <p className="section-index">( 04 )</p>
+              <p className="section-index">( 03 )</p>
               <p className="section-label">CORE STRENGTHS</p>
             </div>
             <h2>MAKE IT<br /><em>MOVE.</em></h2>
@@ -462,7 +442,7 @@ function App() {
         <div className="contact-grid" aria-hidden="true"><span /><span /><span /><span /><span /><span /></div>
         <div className="shell contact-shell">
           <div className="contact-top">
-            <span>05 / CONTACT</span>
+            <span>04 / CONTACT</span>
             <span>AVAILABLE FOR SELECTED PROJECTS</span>
           </div>
           <p className="motion-word" aria-hidden="true">CONTACT</p>
