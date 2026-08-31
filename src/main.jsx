@@ -22,7 +22,14 @@ const projects = [
     type: 'KEY VISUAL / 3D RENDER',
     description: '以构图、材质与光线凝练单帧视觉，在静止画面中建立鲜明的品牌记忆点。',
     className: 'art-orbit',
-    video: '/works/changsha-screen.share.mp4',
+    images: [
+      '/works/key-visual-glasses-silver.png',
+      '/works/key-visual-glasses-black.png',
+      '/works/key-visual-sanang-nova.jpg',
+      '/works/key-visual-robot-arm.jpg',
+      '/works/key-visual-sanang-gallery.jpg',
+      '/works/key-visual-sanang-campaign.jpg',
+    ],
     size: 'project-half',
   },
   {
@@ -170,6 +177,55 @@ function ProjectVideo({ source, title }) {
     >
       {shouldLoad && <source src={source} type="video/mp4" />}
     </video>
+  )
+}
+
+function ProjectImageCarousel({ images, title }) {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const dragStartX = useRef(null)
+
+  const goTo = (nextIndex) => {
+    setActiveIndex((nextIndex + images.length) % images.length)
+  }
+
+  const handlePointerDown = (event) => {
+    dragStartX.current = event.clientX
+    event.currentTarget.setPointerCapture?.(event.pointerId)
+  }
+
+  const handlePointerUp = (event) => {
+    if (dragStartX.current === null) return
+    const distance = event.clientX - dragStartX.current
+    if (Math.abs(distance) > 36) goTo(activeIndex + (distance < 0 ? 1 : -1))
+    dragStartX.current = null
+  }
+
+  return (
+    <div
+      className="project-image-carousel"
+      aria-label={`${title}图片轮播，共 ${images.length} 张`}
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={() => { dragStartX.current = null }}
+    >
+      <div className="project-image-track" style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
+        {images.map((source, index) => (
+          <figure className="project-image-slide" key={source}>
+            <img
+              src={source}
+              alt={`${title}作品图 ${index + 1}`}
+              draggable="false"
+              loading={index === 0 ? 'eager' : 'lazy'}
+            />
+          </figure>
+        ))}
+      </div>
+      <div className="project-carousel-controls" aria-label="图片切换控制">
+        <button type="button" className="carousel-button" aria-label="上一张图片" onClick={() => goTo(activeIndex - 1)}>←</button>
+        <span>{String(activeIndex + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}</span>
+        <button type="button" className="carousel-button" aria-label="下一张图片" onClick={() => goTo(activeIndex + 1)}>→</button>
+      </div>
+    </div>
   )
 }
 
@@ -379,7 +435,16 @@ function App() {
           <div className="project-grid">
             {projects.map((project) => (
               <article className={`project-card ${project.size}`} key={project.number}>
-                {project.video ? (
+                {project.images ? (
+                  <>
+                    <ProjectImageCarousel images={project.images} title={project.title} />
+                    <div className="project-video-overlay" aria-hidden="true">
+                      <span className="video-label">LZY / {project.number}</span>
+                      <span className="video-corner video-corner-a" />
+                      <span className="video-corner video-corner-b" />
+                    </div>
+                  </>
+                ) : project.video ? (
                   <>
                     <ProjectVideo source={project.video} title={project.title} />
                     <div className="project-video-overlay" aria-hidden="true">
