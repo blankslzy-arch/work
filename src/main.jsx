@@ -6,39 +6,6 @@ import './styles.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const experiences = [
-  {
-    period: '2019.06 — 2022.06',
-    company: '广州造所科技有限公司',
-    role: '三维动画师',
-    copy: '裸眼 3D 屏幕、展厅与产品动画的三维制作及后期合成，参与前期创意讨论，兼顾视觉品质与交付效率。',
-  },
-  {
-    period: '2022.07 — 2023.07',
-    company: '深圳奥视数字视觉有限公司',
-    role: '三维动画师',
-    copy: '完成地产三维包装、虚拟直播场景、产品动画和裸眼 3D 屏幕项目，从脚本方案到最终输出独立推进。',
-  },
-  {
-    period: '2023.10 — 2025.05',
-    company: '深圳艾森视讯科技有限公司',
-    role: 'C4D 动态设计师',
-    copy: '聚焦分镜优化、摄像机动画预演与单帧、成片渲染，用节奏与镜头语言提升品牌视觉表达。',
-  },
-  {
-    period: '2025.06 — 2026.02',
-    company: '深圳市凯创未来科技有限公司',
-    role: '三维动画师',
-    copy: '主导店铺产品动画的创意、脚本、预演、渲染、合成及配音全流程，确保作品符合品牌调性。',
-  },
-  {
-    period: '2026.02 — 2026.09',
-    company: '深圳市飞鸿灵境科技有限公司',
-    role: '3D 动画师',
-    copy: '为科技测评类内容完成产品建模、动画、材质灯光及后期合成，让复杂功能更具可视化与观看体验。',
-  },
-]
-
 const projects = [
   {
     number: '01',
@@ -225,7 +192,7 @@ function App() {
       opening
         .to('.hero-opening-curtain', { duration: 1.45, scaleY: 0, transformOrigin: 'top center', ease: 'expo.inOut' })
         .from('.nav', { duration: 1.05, yPercent: -115, autoAlpha: 0 }, 0.26)
-        .from(['.hero-rail', '.hero-content-head'], { duration: 1, y: 24, autoAlpha: 0, stagger: 0.12 }, 0.5)
+        .from('.hero-content-head', { duration: 1, y: 24, autoAlpha: 0 }, 0.5)
         .from('.hero-headline .headline-idea > i, .hero-headline .headline-real > i, .hero-headline em > i', {
           duration: 1.45,
           yPercent: 118,
@@ -274,15 +241,6 @@ function App() {
         }
       })
 
-      gsap.from('.timeline-row', {
-          y: 38,
-          autoAlpha: 0,
-          duration: 0.85,
-          stagger: 0.12,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: '.timeline', start: 'top 76%', once: true },
-        })
-
       gsap.from('.strength-card', {
           y: 70,
           clipPath: 'inset(0 0 100% 0)',
@@ -299,7 +257,7 @@ function App() {
   const menuItems = [
     ['关于我', '#about'],
     ['作品', '#work'],
-    ['经历', '#profile'],
+    ['优势', '#profile'],
   ]
 
   return (
@@ -351,7 +309,7 @@ function App() {
                 </h1>
                 <div className="hero-actions">
                   <a href="#work" className="hero-button hero-button-primary">查看精选作品 <ArrowUpRight /></a>
-                  <a href="#profile" className="hero-button hero-button-secondary">了解我的经历</a>
+                  <a href="#profile" className="hero-button hero-button-secondary">了解我的优势</a>
                 </div>
               </div>
               <div className="hero-system" aria-hidden="true">
@@ -401,61 +359,37 @@ function App() {
 
       <section className="profile section motion-section" id="profile">
         <div className="shell">
-          <div className="section-heading section-heading-dark">
+          <div className="section-heading">
             <p className="section-index">( 02 )</p>
-            <p className="section-label">PERSONAL PROFILE</p>
+            <p className="section-label">EXPERIENCE / PROFILE</p>
           </div>
-          <p className="motion-word" aria-hidden="true">PROFILE</p>
-          <div className="profile-grid">
-            <div className="portrait-card">
-              <div className="portrait-frame">
-                <img src="/li-ziyu-portrait.png" alt="李子昱证件照" loading="lazy" decoding="async" />
-                <span className="portrait-scan" />
-              </div>
-              <p className="portrait-caption"><span>DESIGNER PORTRAIT</span><span>EST. 2019</span></p>
-            </div>
+          <p className="motion-word" aria-hidden="true">EXPERIENCE</p>
+          <div className="profile-grid profile-simple">
             <div className="profile-copy">
-              <p className="profile-kicker">李子昱 <span>/</span> 三维动画设计师</p>
-              <h2>把创意转化为<br /><em>可感知</em>的空间。</h2>
+              <p className="profile-kicker">李子昱 / 三维动画设计师</p>
+              <h2><b>7</b> 年<br />动态设计经验</h2>
               <p className="profile-lead">具备 7 年三维动画与动态设计经验，熟悉商业项目从创意策划、分镜设计到制作交付的完整流程。擅长以 Cinema 4D 建模、动画与渲染，结合后期合成和剪辑，让想法高效落地。</p>
               <div className="profile-details">
                 <div>
-                  <span>BASED IN</span>
-                  <strong>Shenzhen, China</strong>
-                </div>
-                <div>
                   <span>FOCUS</span>
-                  <strong>3D / Motion / CGI</strong>
+                  <strong>3D / MOTION / CGI</strong>
                 </div>
                 <div>
                   <span>WORKFLOW</span>
                   <strong>C4D / AE / PR / AI</strong>
                 </div>
-              </div>
-              <a href="#contact" className="text-link">LET'S TALK <ArrowUpRight /></a>
-            </div>
-          </div>
-
-          <div className="timeline" aria-label="工作经历">
-            <div className="timeline-title"><span>SELECTED EXPERIENCE</span><span>2019 — NOW</span></div>
-            {experiences.map((experience, index) => (
-              <article className="timeline-row" key={experience.company}>
-                <span className="timeline-number">0{index + 1}</span>
-                <div className="timeline-main">
-                  <h3>{experience.company}</h3>
-                  <p>{experience.copy}</p>
+                <div>
+                  <span>DELIVERY</span>
+                  <strong>CONCEPT TO FINAL</strong>
                 </div>
-                <div className="timeline-role"><span>{experience.role}</span><time>{experience.period}</time></div>
-                <span className="timeline-plus"><Plus /></span>
-              </article>
-            ))}
-          </div>
-
-          <div className="education-strip">
-            <span>EDUCATION</span>
-            <strong>广州大学纺织服装学院</strong>
-            <span>计算机网络工程 / 专科</span>
-            <span>2016.09 — 2019.06</span>
+              </div>
+              <a href="#contact" className="text-link">发起合作 <ArrowUpRight /></a>
+            </div>
+            <aside className="profile-statement">
+              <span>01 / DESIGN VALUE</span>
+              <p>不只完成画面，<br />也建立作品的<br /><em>视觉节奏。</em></p>
+              <small>IDEA / CAMERA / MOTION</small>
+            </aside>
           </div>
         </div>
       </section>
