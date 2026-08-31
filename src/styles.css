@@ -503,8 +503,8 @@ body { background: #e5e2da; }
 .hero .hero-content { padding: 28px 0 22px; }
 .hero .hero-content-head { padding-bottom: 15px; }
 .hero-editorial { padding: clamp(86px, 10.5vw, 168px) 3.5vw 0; }
-.hero-title-side { min-height: 430px; }
-.hero-primary-message { max-width: min(45vw, 640px); }
+.hero-title-side { min-height: 490px; }
+.hero-primary-message { max-width: min(42vw, 620px); }
 .hero-index { color: #5f7276; margin-bottom: 30px; }
 .hero .hero-headline { font-size: clamp(84px, 8.4vw, 148px); letter-spacing: -.115em; line-height: .66; }
 .hero .hero-headline .headline-idea { font-size: .5em; letter-spacing: -.095em; margin: 0 0 .72em .04em; }
@@ -513,20 +513,20 @@ body { background: #e5e2da; }
 .hero .hero-actions { margin-top: 34px; }
 .hero-title-side .hero-system {
   align-items: flex-start;
-  background: linear-gradient(135deg, rgba(232, 237, 232, .42), rgba(194, 207, 205, .08));
-  gap: 12px;
-  height: 176px;
+  background: transparent;
+  gap: 20px;
+  height: 286px;
   justify-content: center;
-  left: clamp(760px, 64vw, 1240px);
-  opacity: .82;
-  padding: 20px 24px;
-  top: 42%;
-  width: 178px;
+  left: clamp(660px, 51vw, 980px);
+  opacity: 1;
+  padding: 16px 0;
+  top: 44%;
+  width: clamp(340px, 26vw, 450px);
 }
-.hero-system strong { color: #30454b; font-family: var(--sans); font-size: clamp(48px, 4.2vw, 74px); font-weight: 600; letter-spacing: -.12em; line-height: .9; opacity: .86; transform: none; white-space: nowrap; }
-.hero-system .system-code, .hero-system .system-caption { color: #52666b; font-size: 7px; letter-spacing: .14em; text-align: left; }
-.hero-system .system-caption { color: #8d6e59; }
-.hero-system .system-rule { background: #425b62; opacity: .55; width: 100%; }
+.hero-system strong { color: #263d45; font-family: var(--sans); font-size: clamp(82px, 7.7vw, 138px); font-weight: 600; letter-spacing: -.16em; line-height: .78; opacity: .96; transform: none; white-space: nowrap; }
+.hero-system .system-code, .hero-system .system-caption { color: #52666b; font-size: 8px; letter-spacing: .16em; text-align: left; }
+.hero-system .system-caption { color: #9a7056; margin-left: .1em; }
+.hero-system .system-rule { background: #425b62; margin-top: 2px; opacity: .7; width: 72%; }
 @media (max-width: 1060px) {
   .hero-primary-message { max-width: 640px; }
 }
