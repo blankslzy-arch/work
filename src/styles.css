@@ -440,3 +440,54 @@ main { display: flex; flex-direction: column; }.hero { order: 1; }.profile { ord
   .hero-title-side { min-height: 0; }
   .hero-primary-message { position: static; }
 }
+
+/* A restrained palette shift gives each chapter its own atmosphere while keeping the editorial system intact. */
+body { background: #e5e2da; }
+.hero, .hero-media { background: #dbe3e1; }
+.hero-fallback {
+  background:
+    radial-gradient(ellipse at 78% 32%, rgba(83, 121, 131, .24), transparent 0 26%),
+    radial-gradient(ellipse at 23% 84%, rgba(192, 157, 125, .16), transparent 0 31%),
+    linear-gradient(90deg, transparent 0 16.66%, rgba(12, 28, 34, .1) 16.7% 16.77%, transparent 16.8% 33.32%, rgba(12, 28, 34, .1) 33.35% 33.42%, transparent 33.45% 49.98%, rgba(12, 28, 34, .1) 50% 50.07%, transparent 50.1% 66.63%, rgba(12, 28, 34, .1) 66.66% 66.73%, transparent 66.76% 83.29%, rgba(12, 28, 34, .1) 83.32% 83.39%, transparent 83.42%),
+    linear-gradient(145deg, #e7ebe6 0%, #d3dfdf 52%, #d8d2c8 100%);
+}
+.intro, .profile {
+  background-color: #e8e1d7;
+  background-image:
+    radial-gradient(ellipse at 86% 24%, rgba(154, 180, 177, .24), transparent 0 28%),
+    linear-gradient(90deg, transparent 0 16.66%, rgba(36, 47, 47, .1) 16.7% 16.76%, transparent 16.8% 33.32%, rgba(36, 47, 47, .1) 33.35% 33.41%, transparent 33.45% 49.98%, rgba(36, 47, 47, .1) 50% 50.06%, transparent 50.1% 66.63%, rgba(36, 47, 47, .1) 66.66% 66.72%, transparent 66.76% 83.29%, rgba(36, 47, 47, .1) 83.32% 83.38%, transparent 83.42%);
+}
+.profile-copy h2 b, .profile-statement em { color: #996f55; }
+.work {
+  background-color: #172930;
+  background-image:
+    radial-gradient(ellipse at 13% 21%, rgba(77, 132, 142, .27), transparent 0 30%),
+    radial-gradient(ellipse at 87% 82%, rgba(151, 103, 78, .16), transparent 0 27%),
+    linear-gradient(90deg, transparent 0 16.66%, rgba(220, 233, 227, .12) 16.7% 16.76%, transparent 16.8% 33.32%, rgba(220, 233, 227, .12) 33.35% 33.41%, transparent 33.45% 49.98%, rgba(220, 233, 227, .12) 50% 50.06%, transparent 50.1% 66.63%, rgba(220, 233, 227, .12) 66.66% 66.72%, transparent 66.76% 83.29%, rgba(220, 233, 227, .12) 83.32% 83.38%, transparent 83.42%);
+  color: #edf0e9;
+}
+.work::before { background: linear-gradient(90deg, rgba(174, 211, 211, .48), rgba(199, 150, 117, .18) 46%, transparent 75%); }
+.work .section-label, .work .section-index, .work-heading > p { color: #d4e4df; }
+.work .motion-word { color: rgba(208, 228, 224, .12); }
+.work .project-card { border-color: rgba(205, 222, 215, .28); box-shadow: 0 18px 45px rgba(5, 14, 18, .22); }
+.strengths {
+  background-color: #273944;
+  background-image:
+    radial-gradient(ellipse at 80% 18%, rgba(115, 147, 158, .3), transparent 0 25%),
+    linear-gradient(90deg, transparent 0 16.66%, rgba(226, 237, 232, .11) 16.7% 16.76%, transparent 16.8% 33.32%, rgba(226, 237, 232, .11) 33.35% 33.41%, transparent 33.45% 49.98%, rgba(226, 237, 232, .11) 50% 50.06%, transparent 50.1% 66.63%, rgba(226, 237, 232, .11) 66.66% 66.72%, transparent 66.76% 83.29%, rgba(226, 237, 232, .11) 83.32% 83.38%, transparent 83.42%);
+  color: #f0f2eb;
+}
+.strengths-top h2 { color: #edf0e8; }
+.strengths-top h2 em { color: #d4a98b; }
+.strength-card { background: rgba(70, 94, 105, .8); border-color: rgba(210, 225, 218, .2); }
+.strength-card:hover { background: #e0e0d4; color: #1a3037; }
+.strength-card p, .strength-card-top { color: #c6d5d0; }
+.contact {
+  background-color: #e8ded5;
+  background-image:
+    radial-gradient(ellipse at 78% 35%, rgba(203, 159, 135, .22), transparent 0 27%),
+    radial-gradient(ellipse at 18% 87%, rgba(132, 166, 169, .2), transparent 0 30%),
+    linear-gradient(90deg, transparent 0 16.66%, rgba(47, 44, 40, .1) 16.7% 16.76%, transparent 16.8% 33.32%, rgba(47, 44, 40, .1) 33.35% 33.41%, transparent 33.45% 49.98%, rgba(47, 44, 40, .1) 50% 50.06%, transparent 50.1% 66.63%, rgba(47, 44, 40, .1) 66.66% 66.72%, transparent 66.76% 83.29%, rgba(47, 44, 40, .1) 83.32% 83.38%, transparent 83.42%);
+}
+.contact-circle { background: #4b6970; }
+.contact-circle:hover { background: #b77b61; color: #fff8f1; }
