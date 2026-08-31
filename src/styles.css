@@ -402,5 +402,9 @@ main { display: flex; flex-direction: column; }.hero { order: 1; }.profile { ord
 .hero-editorial { grid-template-columns: minmax(460px, 1.32fr) minmax(250px, .68fr); max-width: 1260px; }
 .hero .hero-headline .headline-idea, .hero .hero-headline .headline-real, .hero .hero-headline em { overflow: visible; }
 .hero-system { justify-self: center; margin-left: auto; margin-right: auto; width: min(100%, 420px); }
+.hero-system { gap: 18px; }
+.hero-system .system-code, .hero-system .system-caption { position: static; text-align: center; }
+.hero-system .system-caption { line-height: 1.45; }
+.hero-system .system-rule { margin-top: 0; }
 @media (max-width: 840px) { .hero-editorial { grid-template-columns: minmax(0, 1fr) minmax(185px, .45fr); } }
 @media (max-width: 540px) { .hero-editorial { display: block; } .hero-system { display: none; } }
