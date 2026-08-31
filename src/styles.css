@@ -408,3 +408,18 @@ main { display: flex; flex-direction: column; }.hero { order: 1; }.profile { ord
 .hero-system .system-rule { margin-top: 0; }
 @media (max-width: 840px) { .hero-editorial { grid-template-columns: minmax(0, 1fr) minmax(185px, .45fr); } }
 @media (max-width: 540px) { .hero-editorial { display: block; } .hero-system { display: none; } }
+
+/* The notation joins the main title on the left; the right half stays intentionally quiet. */
+.hero-editorial { display: block; max-width: none; padding-right: 0; }
+.hero-title-side { position: relative; width: min(100%, 760px); }
+.hero-title-side .hero-system {
+  height: 250px;
+  left: clamp(460px, 35vw, 690px);
+  margin: 0;
+  min-height: 0;
+  position: absolute;
+  top: 28%;
+  transform: translateY(-50%);
+  width: 240px;
+}
+@media (max-width: 1060px) { .hero-title-side .hero-system { display: none; } }

@@ -305,16 +305,16 @@ function App() {
                   <span className="headline-real"><i>真正</i></span>
                   <em><i>动起来。</i></em>
                 </h1>
+                <div className="hero-system" aria-hidden="true">
+                  <span className="system-code">MOTION / 3D / VISUAL</span>
+                  <strong>LZY</strong>
+                  <span className="system-rule" />
+                  <span className="system-caption">IDEA INTO<br />MOTION</span>
+                </div>
                 <div className="hero-actions">
                   <a href="#work" className="hero-button hero-button-primary">查看精选作品 <ArrowUpRight /></a>
                   <a href="#profile" className="hero-button hero-button-secondary">了解我的优势</a>
                 </div>
-              </div>
-              <div className="hero-system" aria-hidden="true">
-                <span className="system-code">MOTION / 3D / VISUAL</span>
-                <strong>LZY</strong>
-                <span className="system-rule" />
-                <span className="system-caption">IDEA INTO<br />MOTION</span>
               </div>
             </div>
           </div>
