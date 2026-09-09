@@ -40,7 +40,7 @@ const projects = [
     type: 'AI CONTENT / VISUAL ID',
     description: '将 AI 产品信息与内容节奏转译为清晰、有识别度的动态视觉语言。',
     className: 'art-signal',
-    video: '/works/packaging-replacement.mp4',
+    video: '/works/packaging-replacement-small.mp4',
     size: 'project-half',
   },
 ]
