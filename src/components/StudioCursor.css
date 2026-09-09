@@ -1,0 +1,22 @@
+.studio-cursor { position: fixed; inset: 0; z-index: 1000; pointer-events: none; color: #fff; mix-blend-mode: difference; opacity: 0; }
+.studio-cursor[data-visible="true"] { opacity: 1; }
+.studio-cursor-ring, .studio-cursor-dot { position: absolute; left: 0; top: 0; will-change: transform; }
+.studio-cursor-dot i { position: absolute; width: 4px; height: 4px; left: -2px; top: -2px; border-radius: 50%; background: currentColor; transition: opacity .15s; }
+.studio-cursor-ring > span { position: absolute; width: 28px; height: 28px; left: -14px; top: -14px; display: grid; place-items: center; transition: transform .2s ease; }
+.studio-cursor-ring svg { position: absolute; inset: 0; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: .8; }
+.studio-cursor-ring b { opacity: 0; font: 14px Arial, sans-serif; transition: opacity .15s; }
+.studio-cursor[data-mode="action"] .studio-cursor-ring > span { transform: scale(.72); }
+.studio-cursor[data-mode="work"] .studio-cursor-ring > span { transform: scale(1.55); }
+.studio-cursor[data-mode="work"] .studio-cursor-ring b { opacity: 1; }
+.studio-cursor[data-mode="work"] .studio-cursor-dot i { opacity: 0; }
+.studio-cursor[data-pressed="true"] .studio-cursor-ring > span { transform: scale(.5); }
+@media (hover: hover) and (pointer: fine) {
+  html.studio-cursor-active, html.studio-cursor-active * { cursor: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .studio-cursor * { transition: none !important; }
+}
+@media (forced-colors: active) {
+  .studio-cursor { display: none; }
+  html.studio-cursor-active, html.studio-cursor-active * { cursor: auto !important; }
+}
