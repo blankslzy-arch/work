@@ -8,6 +8,13 @@ import StudioCursor from './components/StudioCursor'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const productFilms = [
+  { id: 's7s', title: 'S7S' },
+  { id: 'z50-ultra', title: 'Z50 Ultra' },
+  { id: 'b33', title: 'B33' },
+  { id: 'f30', title: 'F30' },
+]
+
 const projects = [
   {
     number: '01',
@@ -182,7 +189,7 @@ function ProjectVideo({ source, title }) {
   )
 }
 
-function ProjectPlayer({ source, title }) {
+function ProjectPlayer({ source, title, poster, index }) {
   const dialogRef = useRef(null)
   const playerRef = useRef(null)
   const [loaded, setLoaded] = useState(false)
@@ -192,13 +199,91 @@ function ProjectPlayer({ source, title }) {
     dialogRef.current.showModal()
   }
   return <>
-    <button className="watch-project" type="button" onClick={open}>观看作品 <span aria-hidden="true">↗</span></button>
+    {poster ? <button className="film-cover" type="button" onClick={open} aria-label={`播放 ${title} 完整作品`}>
+      <img src={poster} alt={`${title} 视频封面`} loading="lazy" width="1920" height="1080" />
+      <span className="film-index">{index == null ? 'SHOWREEL / 2026' : `01 / ${String(index + 1).padStart(2, '0')}`}</span>
+      <span className="film-play" aria-hidden="true">▶</span>
+      <span className="film-cover-caption">观看完整作品 <span aria-hidden="true">↗</span></span>
+    </button> : <button className="watch-project" type="button" onClick={open}>观看作品 <span aria-hidden="true">↗</span></button>}
     <dialog className="project-player" ref={dialogRef} onClose={stop} onCancel={stop}
       onClick={(event) => { if (event.target === event.currentTarget) dialogRef.current.close() }} aria-label={`${title}播放器`}>
       <div className="player-header"><span>{title}</span><button type="button" autoFocus onClick={() => dialogRef.current.close()} aria-label="关闭播放器">关闭 ×</button></div>
-      <video ref={playerRef} src={loaded ? source : undefined} controls playsInline preload="metadata" aria-label={title} />
+      <video ref={playerRef} src={loaded ? source : undefined} autoPlay={loaded} controls playsInline preload="metadata" aria-label={title} />
     </dialog>
   </>
+}
+
+function ProjectGallery({ project }) {
+  const items = project.images
+    ? project.images.map(source => ({ source, kind: 'image' }))
+    : (project.videos || [project.video]).map(source => ({ source, kind: 'video' }))
+  const [active, setActive] = useState(0)
+  const [opened, setOpened] = useState(false)
+  const dialog = useRef(null)
+  const drag = useRef(null)
+  const multiple = items.length > 1
+  const go = (direction) => {
+    dialog.current?.querySelectorAll('video').forEach(video => video.pause())
+    setActive(value => (value + direction + items.length) % items.length)
+  }
+  const open = () => { setActive(0); setOpened(true); dialog.current.showModal() }
+  const stop = () => {
+    dialog.current?.querySelectorAll('video').forEach(video => video.pause())
+    setOpened(false)
+    drag.current = null
+  }
+  return <article className={`project-card ${project.size}`}>
+    <div className="project-media-frame">
+      <div className="project-media-surface">
+        <button className="gallery-cover" type="button" onClick={open} aria-label={`打开${project.title}作品集`}>
+          {project.images ? <img src={project.images[0]} alt={project.title} loading="lazy" /> : <ProjectVideo source={project.video} title={project.title} />}
+          <span className="gallery-cover-hint">浏览作品集 <span aria-hidden="true">↗</span></span>
+        </button>
+      </div>
+    </div>
+    <div className="project-info">
+      <span className="project-number">{project.number}</span>
+      <div><p className="project-type">{project.type}</p><h3>{project.title}</h3>
+        <p className="project-description">{project.description}</p>
+        <button type="button" className="watch-project" onClick={open}>浏览作品 <span aria-hidden="true">↗</span></button>
+      </div>
+    </div>
+    <dialog className="project-player gallery-dialog" ref={dialog} aria-label={`${project.title}作品浏览`}
+      onClose={stop} onCancel={stop}
+      onClick={event => { if (event.target === event.currentTarget) dialog.current.close() }}
+      onKeyDown={event => {
+        if (!multiple || event.target.closest('video')) return
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); go(event.key === 'ArrowLeft' ? -1 : 1) }
+      }}>
+      <div className="player-header"><span>{project.title}</span><button type="button" autoFocus onClick={() => dialog.current.close()} aria-label="关闭作品浏览">关闭 ×</button></div>
+      <div className="gallery-stage"
+        onPointerDown={event => {
+          if (!multiple || event.target.closest('video, button') || event.button !== 0) return
+          drag.current = { x: event.clientX, y: event.clientY }
+          event.currentTarget.setPointerCapture(event.pointerId)
+        }}
+        onPointerUp={event => {
+          if (!drag.current) return
+          const dx = event.clientX - drag.current.x
+          const dy = event.clientY - drag.current.y
+          drag.current = null
+          if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) go(dx < 0 ? 1 : -1)
+        }} onPointerCancel={() => { drag.current = null }}>
+        <div className="gallery-slides" style={{ transform: `translateX(-${active * 100}%)` }}>
+          {items.map((item, index) => <div className="gallery-slide" key={item.source} aria-hidden={index !== active} inert={index !== active}>
+            {opened && (item.kind === 'image'
+              ? <img src={item.source} alt={`${project.title} · 作品 ${index + 1}`} draggable="false" />
+              : index === active && <video src={item.source} controls playsInline preload="metadata" aria-label={`${project.title} · 作品 ${index + 1}`} />)}
+          </div>)}
+        </div>
+      </div>
+      <div className="gallery-navigation">
+        <button type="button" disabled={!multiple} onClick={() => go(-1)} aria-label="上一个作品">←</button>
+        <span aria-live="polite">{String(active + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}</span>
+        <button type="button" disabled={!multiple} onClick={() => go(1)} aria-label="下一个作品">→</button>
+      </div>
+    </dialog>
+  </article>
 }
 
 function ProjectImageCarousel({ images, title }) {
@@ -328,6 +413,25 @@ function App() {
     }
 
     const context = gsap.context(() => {
+      const titleLines = '.hero-headline .headline-idea > i, .hero-headline .headline-real > i, .hero-headline em > i'
+      gsap.set(titleLines, { autoAlpha: 0, yPercent: 115, scaleX: .78, rotation: 2, clipPath: 'inset(0 0 100% 0)', transformOrigin: 'left bottom' })
+      gsap.set('.hero-system strong', { autoAlpha: 0, yPercent: 24, scaleX: .8, clipPath: 'inset(0 100% 0 0)', transformOrigin: 'left bottom' })
+      gsap.set('.hero-index, .hero-system > span, .hero-actions > *', { autoAlpha: 0, y: 16 })
+      const textEntrance = gsap.timeline({ paused: true, onComplete: () => {
+        scenesReadyRef.current = true
+        setScenesReady(true)
+      } })
+        .set('.hero-editorial', { visibility: 'visible' })
+        .to(titleLines, { autoAlpha: 1, yPercent: 0, scaleX: 1, rotation: 0, clipPath: 'inset(-20% -20% -20% -20%)', duration: 1.65, stagger: .22, ease: 'power3.out' }, 0)
+        .to('.hero-system strong', { autoAlpha: .78, yPercent: 0, scaleX: 1, clipPath: 'inset(-20% -20% -20% -20%)', duration: 1.6, ease: 'power3.out' }, .65)
+        .to('.hero-index, .hero-system > span', { autoAlpha: 1, y: 0, duration: .8, stagger: .1, ease: 'power2.out' }, 1.65)
+        .to('.hero-actions > *', { autoAlpha: 1, y: 0, duration: .85, stagger: .12, ease: 'power3.out', clearProps: 'transform' }, 2.03)
+      let openingComplete = false
+      const revealHero = () => {
+        const bounds = root.querySelector('.hero').getBoundingClientRect()
+        if (openingComplete && bounds.bottom > window.innerHeight * .3 && bounds.top < window.innerHeight * .7 && textEntrance.progress() === 0) textEntrance.play()
+      }
+      ScrollTrigger.create({ trigger: '.hero', start: 'top 70%', end: 'bottom 30%', onEnter: revealHero, onEnterBack: revealHero })
       const opening = gsap.timeline({ defaults: { ease: 'power4.out' } })
       opening
         .fromTo('.veil-core', { scale: .85, opacity: .85 },
@@ -359,25 +463,12 @@ function App() {
         .set('.opening-veil', { autoAlpha: 0 }, 2.8)
         .from('.pixel-hero-media .pixel-blast-container', { duration: .8, opacity: 0, ease: 'sine.inOut' }, 2.2)
         .to(motionRef.current, { speed: .22, duration: .8, ease: 'sine.inOut' }, 2.2)
-        .from('.hero-system strong', { duration: 1.35, yPercent: 55, scaleX: .75, clipPath: 'inset(0 100% 0 0)', transformOrigin: 'left bottom', ease: 'expo.out' }, 2.15)
         .from('.glass-header', { duration: .6, autoAlpha: 0 }, 2.4)
-        .from('.hero-headline .headline-idea > i, .hero-headline .headline-real > i, .hero-headline em > i', {
-          duration: 1.5,
-          yPercent: 105,
-          scaleX: .76,
-          rotation: 3,
-          transformOrigin: 'left bottom',
-          stagger: .16,
-          ease: 'expo.out',
-        }, 2.24)
-        .from('.hero-index, .hero-system > span', { duration: .6, autoAlpha: 0 }, 2.4)
-        .from('.hero-actions > *', { duration: .5, y: 5, autoAlpha: 0, stagger: .05 }, 2.45)
         .from('.hero-meta', { duration: .5, autoAlpha: 0 }, 2.5)
         .call(() => {
-          scenesReadyRef.current = true
-          setScenesReady(true)
-          if (['', '#top', '#profile'].includes(window.location.hash)) window.history.replaceState(null, '', '#top')
-        }, [], 4.1)
+          openingComplete = true
+          revealHero()
+        }, [], 2.8)
 
 
       const sectionTimelines = new Map()
@@ -395,7 +486,7 @@ function App() {
         if (content.length) timeline.from(content, { duration: 1.3, y: 58, clipPath: 'inset(0 0 100% 0)', stagger: .16 }, .8)
       })
 
-      gsap.utils.toArray('.project-card').forEach((card, index) => {
+      gsap.utils.toArray('.project-card:not(.product-collection)').forEach((card, index) => {
         const media = card.querySelector('.project-media-frame')
         const surface = card.querySelector('.project-media-surface')
         const info = card.querySelector('.project-info')
@@ -416,6 +507,12 @@ function App() {
             scrollTrigger: { trigger: media, start: 'top bottom', end: 'bottom top', scrub: 1.2 } })
         }
 
+      })
+
+      gsap.utils.toArray('.film-card').forEach((card, index) => {
+        gsap.from(card, { y: 60, clipPath: 'inset(0 0 100% 0)', duration: 1.4,
+          delay: index % 2 * .15, ease: 'power3.out',
+          scrollTrigger: { trigger: card, start: 'top 90%', once: true } })
       })
 
       const capabilityReveal = gsap.from('.strength-card', {
@@ -572,28 +669,22 @@ function App() {
           </div>
 
           <div className="project-grid">
-            {projects.map((project) => (
-              <article className={`project-card ${project.size}`} key={project.number}>
-                <div className="project-media-frame">
-                <div className="project-media-surface">
-                {project.images ? (
-                    <ProjectImageCarousel images={project.images} title={project.title} />
-                ) : project.video ? (
-                    <ProjectVideo source={project.video} title={project.title} />
-                ) : <ProjectArtwork className={project.className} number={project.number} />}
+            {projects.map((project) => project.number === '01' ? (
+              <article className="project-card project-featured product-collection" key={project.number}>
+                <div className="film-collection-heading">
+                  <div><p className="project-type">01 / PRODUCT FILM · CGI</p><h3>{project.title}</h3></div>
+                  <p>{project.description}</p>
                 </div>
+                <div className="film-card">
+                  <ProjectPlayer source="/works/portfolio-full.web.mp4" poster="/works/portfolio-full.jpg" title="李子昱 · 作品集" />
                 </div>
-                <div className="project-info">
-                  <span className="project-number">{project.number}</span>
-                  <div>
-                    <p className="project-type">{project.type}</p>
-                    <h3>{project.title}</h3>
-                    <p className="project-description">{project.description}</p>
-                    {project.video && <ProjectPlayer source={project.video} title={project.title} />}
-                  </div>
+                <div className="film-wall product-film-details">
+                  {productFilms.map((film, index) => <div className="film-card" key={film.id}>
+                    <ProjectPlayer source={`/works/product-${film.id}.mp4`} poster={`/works/product-${film.id}.jpg`} title={film.title} index={index} />
+                  </div>)}
                 </div>
               </article>
-            ))}
+            ) : <ProjectGallery key={project.number} project={project} />)}
           </div>
         </div>
       </section>
