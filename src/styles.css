@@ -818,6 +818,9 @@ html, body { background: #fafbfd; }
 .hero-editorial { visibility: hidden; }
 @media(prefers-reduced-motion: reduce) { .hero-editorial { visibility: visible; } }
 .product-film-details { margin-top: 28px; }
+.work .ai-collection { padding-bottom: 0; }
+.ai-film-wall .film-cover-caption { font-size: 15px; }
+@media (min-width: 1200px) { .ai-film-wall { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; } }
 .film-cover { display: block; position: relative; width: 100%; aspect-ratio: 16 / 9; padding: 0; border: 0; border-radius: 8px; overflow: hidden; background: #15191c; color: white; text-align: left; cursor: pointer; isolation: isolate; }
 .film-cover img { display: block; width: 100%; height: 100%; object-fit: contain; transition: transform 1s cubic-bezier(.22,1,.36,1); }
 .film-cover::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg,rgba(0,0,0,.2),transparent 30%,transparent 65%,rgba(0,0,0,.55)); pointer-events: none; }
